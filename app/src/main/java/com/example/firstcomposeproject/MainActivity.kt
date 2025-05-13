@@ -31,7 +31,9 @@ class MainActivity : ComponentActivity() {
         Text(contact.name)
     }
 
-    @Preview(showSystemUi = true)
+    @Preview(showSystemUi = true,
+        device = "spec:width=1080px,height=2400px,dpi=420"
+    )
     @Composable
     fun ContactDetailsPreview(){
         ContactDetails(contact = Contact(
