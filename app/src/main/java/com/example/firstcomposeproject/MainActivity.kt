@@ -19,12 +19,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
@@ -50,18 +50,18 @@ class MainActivity : ComponentActivity() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(dimensionResource(R.dimen.main_padding)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Первым делом показываем изображение контакта
             Box(
-                modifier = Modifier.height(64.dp),
+                modifier = Modifier.height(dimensionResource(R.dimen.image_size)),
                 contentAlignment = Alignment.Center
             ){
-                when (contact.imageRes == null) {
-                    true -> {
+                when {
+                    contact.imageRes == null -> {
                         Icon(
-                            modifier = Modifier.size(64.dp),
+                            modifier = Modifier.size(dimensionResource(R.dimen.image_size)),
                             painter = painterResource(id = R.drawable.circle),
                             tint = Color.LightGray,
                             contentDescription = null
@@ -69,10 +69,10 @@ class MainActivity : ComponentActivity() {
                         Text(
                             text = contact.name.take(1) + contact.familyName.take(1),
                             fontWeight = FontWeight.Bold,
-                            fontSize = 20.sp
+                            fontSize = dimensionResource(R.dimen.big_font).value.sp
                         )
                     }
-                    false -> Image(
+                    else -> Image(
                         modifier = Modifier.fillMaxSize(),
                         painter = painterResource(id = contact.imageRes),
                         contentDescription = null
@@ -81,21 +81,23 @@ class MainActivity : ComponentActivity() {
             }
             // Теперь показываем имя и отчество, если есть
             Text("${contact.name} ${contact.surname.orEmpty()}",
-                modifier = Modifier.padding(top = 12.dp),
-                fontSize = 16.sp,
+                modifier = Modifier.padding(top = dimensionResource(R.dimen.middle_padding)),
+                fontSize = dimensionResource(R.dimen.main_font).value.sp,
                 fontWeight = FontWeight.Bold)
             // Теперь у нас фамилия и отметка избранного
             Row(
                 modifier = Modifier.fillMaxWidth()
-                    .padding(bottom = 20.dp),
+                    .padding(bottom = dimensionResource(R.dimen.high_padding)),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(contact.familyName,
-                    fontSize = 20.sp)
+                    fontSize = dimensionResource(R.dimen.big_font).value.sp)
                 if (contact.isFavorite)
                     Image(
-                        modifier = Modifier.height(20.dp).padding(start = 6.dp),
+                        modifier = Modifier
+                            .height(dimensionResource(R.dimen.is_favorite_size))
+                            .padding(start = dimensionResource(R.dimen.half_middle_padding)),
                         painter = painterResource(android.R.drawable.star_big_on),
                         contentDescription = null)
             }
@@ -112,16 +114,16 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun InfoRow(name: String, value: String) {
         Row(
-            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
+            modifier = Modifier.fillMaxWidth().padding(vertical = dimensionResource(R.dimen.half_main_padding)),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(name,
-                modifier = Modifier.weight(0.5f).padding(horizontal = 4.dp),
+                modifier = Modifier.weight(0.5f).padding(horizontal = dimensionResource(R.dimen.quarter_main_padding)),
                 textAlign = TextAlign.End,
-                fontSize = 16.sp)
+                fontSize = dimensionResource(R.dimen.main_font).value.sp)
             Text(value,
-                modifier = Modifier.weight(0.5f).padding(horizontal = 4.dp),
-                fontSize = 16.sp)
+                modifier = Modifier.weight(0.5f).padding(horizontal = dimensionResource(R.dimen.quarter_main_padding)),
+                fontSize = dimensionResource(R.dimen.main_font).value.sp)
         }
     }
 
