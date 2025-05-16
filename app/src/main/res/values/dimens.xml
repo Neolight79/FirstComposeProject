@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_font">16sp</dimen>
+    <dimen name="big_font">20sp</dimen>
+    <dimen name="main_padding">16dp</dimen>
+    <dimen name="half_main_padding">8dp</dimen>
+    <dimen name="quarter_main_padding">4dp</dimen>
+    <dimen name="middle_padding">12dp</dimen>
+    <dimen name="high_padding">20dp</dimen>
+    <dimen name="is_favorite_size">20dp</dimen>
+    <dimen name="image_size">64dp</dimen>
+    <dimen name="half_middle_padding">6dp</dimen>
+</resources>
